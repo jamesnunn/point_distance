@@ -41,12 +41,6 @@ class PointListTest(unittest.TestCase):
                            (10, 5.874, 2.111),
                            (11, -5.598, -9.757)]
 
-    def test_load_csv_rows(self):
-        self.assertEqual(load_csv_rows('test_points.csv'), self.point_list)
-
-
-class MatrixTest(unittest.TestCase):
-    def setUp(self):
         self.matrix = [['PointId', 1, 2, 3, 4, 5, 6, 7, 9, 10, 11],
     [1, 0.0, 9.982, 6.287, 6.848, 11.095, 5.268, 12.248, 7.072, 6.242, 11.249],
     [2, 9.982, 0.0, 16.021, 8.435, 3.383, 4.854, 15.097, 16.863, 14.02, 16.596],
@@ -59,9 +53,11 @@ class MatrixTest(unittest.TestCase):
     [10, 6.242, 14.02, 8.288, 6.682, 13.665, 9.362, 18.169, 5.136, 0.0, 16.506],
     [11, 11.249, 16.596, 9.411, 17.818, 19.363, 14.084, 3.76, 13.777, 16.506, 0.0]]
 
-    def test_create_matrix(self):
-        self.assertEqual(create_distance_matrix(load_csv_rows('test_points.csv')), self.matrix)
+    def test_load_csv_rows(self):
+        self.assertEqual(load_csv_rows('test_points.csv'), self.point_list)
 
+    def test_create_matrix(self):
+        self.assertEqual(create_distance_matrix(self.point_list), self.matrix)
 
 
 if __name__ == '__main__':
