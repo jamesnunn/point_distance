@@ -1,7 +1,7 @@
 # point_distance.py
 #### Calculate distances between points in a CSV
 
-#####Usage
+###### Usage
 
 `python point_distance.py path_to_csv`
 
@@ -41,7 +41,7 @@ the current working directory
 | 3  | 2  | 1 | 0 | 3 | 8  |
 | 4  | 5  | 4 | 3 | 0 | 5  |
 | 5  | 10 | 9 | 8 | 5 | 0  |
-
+(Note - you get decimals as an output, not just integers like in this table)
 
 ###### Assumptions
 
