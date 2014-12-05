@@ -55,11 +55,11 @@ the current working directory
 
 `python test_point_distance.py`
 
-Tests the critical function <point_distance> multiple times which calculates
+* Tests the critical function `point_distance` multiple times which calculates
 distance between points.
 
-Tests the function <load_csv_rows> which imports the data from CSV, ignoring
+* Tests the function `load_csv_rows` which imports the data from CSV, ignoring
 faulty data.
 
-Tests the function <create_matrix> which creates the final matrix containing
+* Tests the function `create_matrix` which creates the final matrix containing
 distances calculated between points
