@@ -15,15 +15,15 @@ def point_distance(x1, y1, x2, y2, dp=3):
         x2, y2 - X and Y coordinate pair of second point
         dp     - decimal places of distance
     """
-    # Square the sides of the RA-triangle
-    tri_side1_sqrd = float(x2 - x1) ** 2
-    tri_side2_sqrd = float(y2 - y1) ** 2
-    # Sum them to get hypotenuse square
-    hypotenuse_sqrd = tri_side1_sqrd + tri_side2_sqrd
+    # Get a^2 & b^2
+    a2 = float(x2 - x1) ** 2
+    b2 = float(y2 - y1) ** 2
+    # Sum them to get c^2
+    c2 = a2 + b2
     # Root the hypotenuse
-    hypotenuse = round(math.sqrt(hypotenuse_sqrd), dp)
+    c = round(math.sqrt(c2), dp)
 
-    return hypotenuse
+    return c
 
 
 def load_csv_rows(input_file):
@@ -39,7 +39,8 @@ def load_csv_rows(input_file):
 
         points_csv = csv.reader(in_file)
 
-        # Create dict of points to work on, checking the contents of data as we go
+        # Create dict of points to work on, checking the contents of the rows
+        # as we go
         pt_ids = []
         pts_list = []
         row_count = 0
@@ -51,21 +52,25 @@ def load_csv_rows(input_file):
             if row_count == 1:
                 continue
 
-            # Convert data to integer and float types; if errors are found, skip it
-            # and log error
+            # Convert data to integer and float types; if errors are found,
+            # skip it and log error
             try:
-                in_pt_id, in_pt_x, in_pt_y = int(row[0]), float(row[1]), float(row[2])
+                in_pt_id, in_pt_x, in_pt_y = (int(row[0]),
+                                              float(row[1]),
+                                              float(row[2]))
             except ValueError:
-                print 'WARNING: Ignored invalid data in row {}\n'.format(row_count)
+                print 'WARNING: Ignored invalid data in row ' \
+                      '{}\n'.format(row_count)
                 continue
 
-            # Check if duplicate ID exists, if it does, skip this one and log error
-            # otherwise add it to the list of points
+            # Check if duplicate ID exists, if it does, skip this one and
+            # log error otherwise add it to the list of points
             if in_pt_id not in pt_ids:
                 pts_list.append((in_pt_id, in_pt_x, in_pt_y))
                 pt_ids.append(in_pt_id)
             else:
-                print 'WARNING: Ignored duplicate ID {} in row {}\n'.format(in_pt_id, row_count)
+                print 'WARNING: Ignored duplicate ID ' \
+                      '{} in row {}\n'.format(in_pt_id, row_count)
                 continue
             # If we get to here, a new, clean, validated point has been added
     return pts_list
